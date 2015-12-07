@@ -208,13 +208,11 @@ codeEditor.setSize(460, 450);
 	}
  
 function startRunningLine(lineNum) {
-
 	var info = codeEditor.lineInfo(lineNum);
 	codeEditor.setGutterMarker(lineNum, "breakpoints",  makeMarker());
 }
 
 function endRunningLine(lineNum) {
-);
 	var info = codeEditor.lineInfo(lineNum);
 	codeEditor.setGutterMarker(lineNum, "breakpoints", null);
 }
