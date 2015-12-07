@@ -113,8 +113,8 @@ defs.append("marker")
 			"viewBox":"0 -5 10 10",
 			"refX":5,
 			"refY":0,
-			"markerWidth":4,
-			"markerHeight":4,
+			"markerWidth":8,
+			"markerHeight":8,
 			"orient":"auto"
 		})
 		.append("path")
@@ -126,7 +126,7 @@ svg.append('line')
 		"class":"arrow",
 		"marker-end":"url(#arrow)",
 		"x1": xScale(0),
-		"y1": yScale(0),
+		"y1": yScale(-10),
 		"x2": xScale(0),
 		"y2": yScale(10)
 	});
@@ -135,7 +135,7 @@ svg.append('line')
 	.attr({
 		"class":"arrow",
 		"marker-end":"url(#arrow)",
-		"x1": xScale(0),
+		"x1": xScale(-10),
 		"y1": yScale(0),
 		"x2": xScale(10),
 		"y2": yScale(0)
