@@ -55,6 +55,7 @@ var svg = d3.select("#figure")
     .attr("height", h)
     .attr("border", border);
 
+
 //define X axis
 var xAxis = d3.svg.axis()
     .scale(xScale)
@@ -102,6 +103,34 @@ svg.append("g")
     .classed('x', true)
     .classed('grid', true)
     .call(xAxisGrid);
+
+// draw x and y axis arrows
+defs = svg.append("defs")
+
+defs.append("marker")
+		.attr({
+			"id":"arrow",
+			"viewBox":"0 -5 10 10",
+			"refX":5,
+			"refY":0,
+			"markerWidth":4,
+			"markerHeight":4,
+			"orient":"auto"
+		})
+		.append("path")
+			.attr("d", "M0,-5L10,0L0,5")
+			.attr("class","arrowHead");
+
+svg.append('line')
+	.attr({
+		"class":"arrow",
+		"marker-end":"url(#arrow)",
+		"x1": xScale(0),
+		"y1": yScale(0),
+		"x2": xScale(10),
+		"y2": yScale(10)
+	});
+
 
 //create the circles
 svg.append("g").selectAll("circle")
