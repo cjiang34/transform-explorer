@@ -11,59 +11,47 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.10/d3.min.js"></script>
 
 <style>
-
-svg {
-    font: 10px sans-serif;
-}
-.grid .tick {
-    stroke: lightgrey;
-    opacity: 0.7;
-}
-.grid path {
-    stroke-width: 0;
-}
-.axis {
-    shape-rendering: crispEdges;
-}
-.axis line {
-    fill: none;
-    shape-rendering: crispEdges;
-}
-.y.axis line, .y.axis path {
-    fill: none;
-    stroke: lightgrey;
-}
-
-.breakpoints {
-    width: 10px;
-}
-
-.arrow {
-	stroke-width:1;
-	stroke: #000;
-}
- 
- 
-
+	svg {
+	    font: 10px sans-serif;
+	}
+	.grid .tick {
+	    stroke: lightgrey;
+	    opacity: 0.7;
+	}
+	.grid path {
+	    stroke-width: 0;
+	}
+	.axis {
+	    shape-rendering: crispEdges;
+	}
+	.axis line {
+	    fill: none;
+	    shape-rendering: crispEdges;
+	}
+	.y.axis line, .y.axis path {
+	    fill: none;
+	    stroke: lightgrey;
+	}
+	
+	.breakpoints {
+	    width: 10px;
+	}
+	
+	.arrow {
+		stroke-width:1;
+		stroke: #000;
+	}
 </style>
-
 </head>
-
-
 <body>
 
-</body>
-
-
 <div id="figure" style="float:left;"></div>
-
 <div style="float:left; width:500px; height: 500px; padding: 15px;">
 	<span style="font: 18px sans-serif; padding: 10 px;">Transform Command Editor</span>
 	<div id="code_editor" style="outline: gray solid thin;"></div>
+	<br>
 	<button id="run_button" style="width: 200px;">Run Commands</button>
 </div>
- 
-</div>
-
 <script src="app.js"></script>
+</body>
 </html>
