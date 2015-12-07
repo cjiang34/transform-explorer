@@ -227,8 +227,8 @@ function endRunningLine(lineNum) {
 }
 
 function showCommandSequence(transformation_commands){
-	var transition_period = 3000;
-	var transition_period_pause = 1000;
+	var transition_period = 2500;
+	var transition_period_pause = 500;
 	var transformation_groups = []
 	var cur_group = shape_container;
 	for (var i = transformation_commands.length-1; i >= 0; --i) {
