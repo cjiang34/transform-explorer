@@ -18,24 +18,21 @@ var example_solution = "// Specify transformations like this... \n" +
 "translate(4, -8) \n" +
 "// Now delete above... and enter your own commands."; 
 
-var waypoints = [ { 'color' : 'red',
-					'points' : [[7,6], [7, 2], [9, 2]] },
-                 
-				 { 'color' : 'blue',
-					'points' : [[-5,6], [-5, 2], [-7, 2]]},	
-					
-				 { 'color' : 'green',
-					'points' : [[-1,-7], [-1,-5], [-2,-5]]},
-					
-				{ 'color' : 'purple',
-					'points' : [[7,-4], [5, -4], [5, -5]] }
-					];
+var waypoints =[{ 'color' : 'red',
+		  'points' : [[7,6], [7, 2], [9, 2]] 
+		},
+            	{ 'color' : 'blue',
+		  'points' : [[-5,6], [-5, 2], [-7, 2]]
+            	},	
+		{ 'color' : 'green',
+		  'points' : [[-1,-7], [-1,-5], [-2,-5]]
+		},
+		{ 'color' : 'purple',
+		  'points' : [[7,-4], [5, -4], [5, -5]]
+		}
+		];
     
-var dataset = [
-               [0,2],
-               [0,0],
-               [1,0]
-           ];
+var dataset = [ [0,2], [0,0], [1,0] ];
 
 // create scale functions
 var xScale = d3.scale.linear()
@@ -46,15 +43,10 @@ var yScale = d3.scale.linear()
     .domain([-10, 10])
     .range([h - padding, padding]);
 
-
 var dx = xScale(0);
 var sx = xScale(1)-dx;
-
-
 var dy = yScale(0);
 var sy = yScale(1)-dy;
-
-
 
 //Create SVG element
 var svg = d3.select("#figure")
@@ -121,7 +113,6 @@ svg.append("g").selectAll("circle")
 .attr("r", 3)
 .style("fill", "black");
 
-
 for (waypoint of waypoints){
     console.log(waypoint)
 	//create the circles
@@ -137,9 +128,6 @@ for (waypoint of waypoints){
 	
 }
 
-
-
-//This is the accessor function we talked about above
 var lineFunction = d3.svg.line()
                          .x(function(d) { return d[0]; })
                          .y(function(d) { return d[1]; })
@@ -147,12 +135,6 @@ var lineFunction = d3.svg.line()
 
 var shape_container = svg.append("g")
 	.attr("transform", "translate(" + dx + "," + dy + ") scale(" + sx + "," + sy + ")");
-
-
-
-/* Example definition of a simple mode that understands a subset of
- * JavaScript:
- */
 
 CodeMirror.defineSimpleMode("transforms", {
   // The start state contains the rules that are intially used
@@ -179,9 +161,6 @@ CodeMirror.defineSimpleMode("transforms", {
     lineComment: "//"
   }
 });
-
-
-
 
  var codeEditor = CodeMirror($('#code_editor').get(0), {
 	  value: example_solution,
@@ -212,7 +191,7 @@ function endRunningLine(lineNum) {
 }
 
 function showCommandSequence(transformation_commands){
-	var transition_period = 2500;
+	var transition_period = 4000;
 	var transformation_groups = []
 	var cur_group = shape_container;
 	for (var i = transformation_commands.length-1; i >= 0; --i) {
