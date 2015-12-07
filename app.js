@@ -10,12 +10,13 @@ var border = 1;
 var bordercolor = 'black';
 
 var example_solution = "// Specify transformations like this... \n" + 
-"// Example: rotate 45 degree counter-clockwise\n" + 
+"// Example: rotate 90 degree counter-clockwise\n" + 
 "rotate(90)\n" + 
 "// Example: scale x-axis by -1 and y-axis by 2\n" + 
 "scale( -1, 2)\n" + 
 "// Example: translate 4 in x and -8 in y\n" + 
-"translate(4, -8) \n"; 
+"translate(4, -8) \n" +
+"// To get started, delete everything and enter your own commands."; 
 
 var waypoints = [ { 'color' : 'red',
 					'points' : [[7,6], [7, 2], [9, 2]] },
