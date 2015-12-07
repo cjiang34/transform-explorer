@@ -5,8 +5,8 @@ function init(){
 //Width and height
 var w = 500;
 var h = 500;
-var padding = 15;
-var border = 4;
+var padding = 20;
+var border = 5;
 var bordercolor = 'black';
 
 var example_solution = "// Specify transformations like this... \n" + 
@@ -207,7 +207,7 @@ CodeMirror.defineSimpleMode("transforms", {
 	  gutters: ["CodeMirror-linenumbers", "breakpoints"]
 	});
 
-codeEditor.setSize(460, 450);
+codeEditor.setSize(460, 430);
 
  function makeMarker() {
 	  var marker = document.createElement("div");
