@@ -5,8 +5,8 @@ function init(){
 //Width and height
 var w = 500;
 var h = 500;
-var padding = 10;
-var border = 1;
+var padding = 15;
+var border = 4;
 var bordercolor = 'black';
 
 var example_solution = "// Specify transformations like this... \n" + 
@@ -143,7 +143,7 @@ svg.append("g").selectAll("circle")
 .style("fill", "black");
 
 for (waypoint of waypoints){
-    console.log(waypoint)
+ 
 	//create the circles
 	svg.append("g").selectAll("circle")
 	    .data(waypoint['points'])
@@ -208,13 +208,13 @@ codeEditor.setSize(460, 450);
 	}
  
 function startRunningLine(lineNum) {
-	console.log('start line ' + lineNum );
+
 	var info = codeEditor.lineInfo(lineNum);
 	codeEditor.setGutterMarker(lineNum, "breakpoints",  makeMarker());
 }
 
 function endRunningLine(lineNum) {
-	console.log('done line ' + lineNum );
+);
 	var info = codeEditor.lineInfo(lineNum);
 	codeEditor.setGutterMarker(lineNum, "breakpoints", null);
 }
@@ -225,7 +225,6 @@ function showCommandSequence(transformation_commands){
 	var transformation_groups = []
 	var cur_group = shape_container;
 	for (var i = transformation_commands.length-1; i >= 0; --i) {
-		console.log(i)
 		var line_num = transformation_commands[i]['linenum']
 		var command = transformation_commands[i]['command']
 		var time = transformation_commands.length*transition_period - transition_period*transformation_groups.length
