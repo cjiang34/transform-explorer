@@ -3,26 +3,16 @@
 function init(){
 
 //Width and height
-var w = 400;
-var h = 400;
+var w = 500;
+var h = 500;
 var padding = 10;
 var border = 1;
 var bordercolor = 'black';
 
-var example_solution = "// from back to red \n" + 
-"rotate(135.00) \n" + 
-"scale(1.5,1.5) \n" + 
-"translate(3,2) \n" + 
-"\n" + 
-"// from red to blue \n" + 
-"scale(-1,-1) \n" + 
-"translate(-2,-2) \n" + 
-"\n" + 
-"// from blue to green \n" + 
-"translate(5,4)\n" + 
-"rotate(90)\n" + 
-"scale(1.5,1.0)\n" + 
-"translate(-5,5)";
+var example_solution = "// Transform commands are... \n" + 
+"// rotate(angle in degrees) \n" + 
+"// scale( x_scale, y_scale) \n" + 
+"// translate( x_shift, y_shift) \n" + 
 
 var waypoints = [ { 'color' : 'red',
 					'points' : [[7,6], [7, 2], [9, 2]] },
@@ -124,7 +114,7 @@ svg.append("g").selectAll("circle")
 .append("circle")
 .attr("cx", function (d) { return xScale(d[0]); })
 .attr("cy", function (d) { return yScale(d[1]); })
-.attr("r", 2)
+.attr("r", 3)
 .style("fill", "black");
 
 
@@ -138,6 +128,7 @@ for (waypoint of waypoints){
 	    .attr("cx", function (d) { return xScale(d[0]); })
 	    .attr("cy", function (d) { return yScale(d[1]); })
 	    .attr("r", 2)
+	    .style("fill-opacity", 0.75)
 	    .style("fill", waypoint['color']);
 	
 }
