@@ -12,7 +12,7 @@ var bordercolor = 'black';
 var example_solution = "// Transform commands are... \n" + 
 "// rotate(angle in degrees) \n" + 
 "// scale( x_scale, y_scale) \n" + 
-"// translate( x_shift, y_shift) \n" + 
+"// translate( x_shift, y_shift) \n"; 
 
 var waypoints = [ { 'color' : 'red',
 					'points' : [[7,6], [7, 2], [9, 2]] },
