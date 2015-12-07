@@ -16,7 +16,7 @@ var example_solution = "// Specify transformations like this... \n" +
 "scale( -1, 2)\n" + 
 "// Example: translate 4 in x and -8 in y\n" + 
 "translate(4, -8) \n" +
-"// To get started, delete everything and enter your own commands."; 
+"// Now delete above... and enter your own commands."; 
 
 var waypoints = [ { 'color' : 'red',
 					'points' : [[7,6], [7, 2], [9, 2]] },
@@ -190,11 +190,12 @@ CodeMirror.defineSimpleMode("transforms", {
 	  gutters: ["CodeMirror-linenumbers", "breakpoints"]
 	});
 
+codeEditor.setSize(500, 500);
 
  function makeMarker() {
 	  var marker = document.createElement("div");
 	  marker.style.color = "#822";
-	  marker.innerHTML = ">";
+	  marker.innerHTML = "-->";
 	  return marker;
 	}
  
