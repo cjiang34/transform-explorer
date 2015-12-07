@@ -9,10 +9,13 @@ var padding = 10;
 var border = 1;
 var bordercolor = 'black';
 
-var example_solution = "// Transform commands are... \n" + 
-"// rotate(angle in degrees) \n" + 
-"// scale( x_scale, y_scale) \n" + 
-"// translate( x_shift, y_shift) \n"; 
+var example_solution = "// Specify transformations like this... \n" + 
+"// Example: rotate 45 degree counter-clockwise\n" + 
+"rotate(90)\n" + 
+"// Example: scale x-axis by -1 and y-axis by 2\n" + 
+"scale( -1, 2)\n" + 
+"// Example: translate 4 in x and -8 in y\n" + 
+"translate(4, -8) \n"; 
 
 var waypoints = [ { 'color' : 'red',
 					'points' : [[7,6], [7, 2], [9, 2]] },
@@ -217,10 +220,6 @@ function showCommandSequence(transformation_commands){
 		var time = transformation_commands.length*transition_period - transition_period*transformation_groups.length
 		cur_group = cur_group.append("g");
 		
-		cur_group = cur_group.append("g");
-		cur_group.transition()
-			.delay(1000)  
-		
 		cur_group.transition()
 			.delay(time)  
 			.duration(1000)  
@@ -229,9 +228,7 @@ function showCommandSequence(transformation_commands){
 		    .each("end", endRunningLine.bind(this, line_num))		
 		transformation_groups.push(cur_group);
 		
-		cur_group = cur_group.append("g");
-		cur_group.transition()
-			.delay(1000)  
+
 	}
 	
 	var shape = cur_group.append("g")
@@ -245,7 +242,7 @@ function showCommandSequence(transformation_commands){
 	var remove_time = transformation_commands.length*transition_period;
 	shape.transition()
 		  .delay(remove_time  )
-		  .duration(10000)
+		  .duration(20000)
 		  .style("opacity",0)
 		  .remove()
 }
