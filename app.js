@@ -131,7 +131,7 @@ for (waypoint of waypoints){
 	    .append("circle")
 	    .attr("cx", function (d) { return xScale(d[0]); })
 	    .attr("cy", function (d) { return yScale(d[1]); })
-	    .attr("r", 2)
+	    .attr("r", 2.5)
 	    .style("fill-opacity", 0.75)
 	    .style("fill", waypoint['color']);
 	
@@ -190,12 +190,12 @@ CodeMirror.defineSimpleMode("transforms", {
 	  gutters: ["CodeMirror-linenumbers", "breakpoints"]
 	});
 
-codeEditor.setSize(500, 500);
+codeEditor.setSize(500, 450);
 
  function makeMarker() {
 	  var marker = document.createElement("div");
 	  marker.style.color = "#822";
-	  marker.innerHTML = "-->";
+	  marker.innerHTML = "➔";
 	  return marker;
 	}
  
