@@ -25,15 +25,17 @@ var example_solution = "// from back to red \n" +
 "translate(-5,5)";
 
 var waypoints = [ { 'color' : 'red',
-					'points' : [[2,1], [3, 2], [2, 3]] },
+					'points' : [[7,6], [7, 2], [9, 2]] },
                  
 				 { 'color' : 'blue',
-					'points' : [[-4,-3], [-5, -4], [-4, -5]]},	
+					'points' : [[-5,6], [-5, 2], [-7, 2]]},	
 					
 				 { 'color' : 'green',
-					'points' : [[-5,5], [-6.5, 6], [-3.5, 6]]},
+					'points' : [[-1,-7], [-1,-5], [-2,-5]]},
 					
-				];
+				{ 'color' : 'purple',
+					'points' : [[7,-4], [5, -4], [5, -5]] }
+					];
     
 var dataset = [
                [0,2],
