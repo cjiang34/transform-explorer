@@ -191,7 +191,8 @@ function endRunningLine(lineNum) {
 }
 
 function showCommandSequence(transformation_commands){
-	var transition_period = 4000;
+	var transition_period = 3000;
+	var transition_period_pause = 1000;
 	var transformation_groups = []
 	var cur_group = shape_container;
 	for (var i = transformation_commands.length-1; i >= 0; --i) {
@@ -202,7 +203,7 @@ function showCommandSequence(transformation_commands){
 		cur_group = cur_group.append("g");
 		cur_group.transition()
 			.delay(time)  
-			.duration(1000)  
+			.duration(transition_period-transition_period_pause)  
 			.attr("transform", command)
 			.each("start", startRunningLine.bind(this, line_num))
 		    .each("end", endRunningLine.bind(this, line_num))		
