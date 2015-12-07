@@ -155,30 +155,6 @@ var shape_container = svg.append("g")
 
 
 
-function showCommandSequence(transformation_commands){
-	
-	var transformation_groups = []
-	var cur_group = shape_container;
-	for (var i = transformation_commands.length-1; i >= 0; --i) {
-		console.log(i)
-		var time = transformation_commands.length*1000 - 1000*transformation_groups.length
-		cur_group = cur_group.append("g");
-		cur_group.transition()
-			.delay( time)  
-			.attr("transform", transformation_commands[i]);
-		transformation_groups.push(cur_group);
-	}
-	
-	var shape = cur_group.append("g")
-	
-	shape.append("path").attr("d", function(d) { return lineFunction(dataset) + "Z"; })
-					  .attr("vector-effect", "non-scaling-stroke")
-				      .attr("stroke", "blue")
-				      .attr("stroke-width", -1)
-				      .attr("fill", "none");
-}
-
-
 /* Example definition of a simple mode that understands a subset of
  * JavaScript:
  */
@@ -216,7 +192,73 @@ CodeMirror.defineSimpleMode("transforms", {
 	  value: example_solution,
 	  mode:  "transforms",
 	  lineNumbers: true,
+	  gutters: ["CodeMirror-linenumbers", "breakpoints"]
 	});
+
+
+ function makeMarker() {
+	  var marker = document.createElement("div");
+	  marker.style.color = "#822";
+	  marker.innerHTML = ">";
+	  return marker;
+	}
+ 
+function startRunningLine(lineNum) {
+	console.log('start line ' + lineNum );
+	var info = codeEditor.lineInfo(lineNum);
+	codeEditor.setGutterMarker(lineNum, "breakpoints",  makeMarker());
+}
+
+function endRunningLine(lineNum) {
+	console.log('done line ' + lineNum );
+	var info = codeEditor.lineInfo(lineNum);
+	codeEditor.setGutterMarker(lineNum, "breakpoints", null);
+}
+
+function showCommandSequence(transformation_commands){
+	var transition_period = 2000;
+	var transformation_groups = []
+	var cur_group = shape_container;
+	for (var i = transformation_commands.length-1; i >= 0; --i) {
+		console.log(i)
+		var line_num = transformation_commands[i]['linenum']
+		var command = transformation_commands[i]['command']
+		var time = transformation_commands.length*transition_period - transition_period*transformation_groups.length
+		cur_group = cur_group.append("g");
+		
+		cur_group = cur_group.append("g");
+		cur_group.transition()
+			.delay(1000)  
+		
+		cur_group.transition()
+			.delay(time)  
+			.duration(1000)  
+			.attr("transform", command)
+			.each("start", startRunningLine.bind(this, line_num))
+		    .each("end", endRunningLine.bind(this, line_num))		
+		transformation_groups.push(cur_group);
+		
+		cur_group = cur_group.append("g");
+		cur_group.transition()
+			.delay(1000)  
+	}
+	
+	var shape = cur_group.append("g")
+	
+	shape.append("path").attr("d", function(d) { return lineFunction(dataset) + "Z"; })
+					  .attr("vector-effect", "non-scaling-stroke")
+				      .attr("stroke", "blue")
+				      .attr("stroke-width", -1)
+				      .attr("fill", "none");
+	
+	var remove_time = transformation_commands.length*transition_period;
+	shape.transition()
+		  .delay(remove_time  )
+		  .duration(10000)
+		  .style("opacity",0)
+		  .remove()
+}
+
 
  
 function run(){
@@ -238,11 +280,9 @@ function run(){
 		var line = lines[i];
 		var is_comment = comment_re.test(line);
 		var is_command = command_re.test(line);
-	    console.log(i + ' comment:' + is_comment + ' command:' + is_command + ' ' + line);
-		
-		
+	   
 		if (is_command){
-			commands.push(line);
+			commands.push( { 'command' : line, 'linenum' : i});
 		}
 		else if (is_comment){
 
