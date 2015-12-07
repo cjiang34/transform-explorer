@@ -190,7 +190,7 @@ CodeMirror.defineSimpleMode("transforms", {
 	  gutters: ["CodeMirror-linenumbers", "breakpoints"]
 	});
 
-codeEditor.setSize(500, 450);
+codeEditor.setSize(460, 450);
 
  function makeMarker() {
 	  var marker = document.createElement("div");
@@ -212,7 +212,7 @@ function endRunningLine(lineNum) {
 }
 
 function showCommandSequence(transformation_commands){
-	var transition_period = 2000;
+	var transition_period = 2500;
 	var transformation_groups = []
 	var cur_group = shape_container;
 	for (var i = transformation_commands.length-1; i >= 0; --i) {
@@ -221,7 +221,6 @@ function showCommandSequence(transformation_commands){
 		var command = transformation_commands[i]['command']
 		var time = transformation_commands.length*transition_period - transition_period*transformation_groups.length
 		cur_group = cur_group.append("g");
-		
 		cur_group.transition()
 			.delay(time)  
 			.duration(1000)  
@@ -229,18 +228,14 @@ function showCommandSequence(transformation_commands){
 			.each("start", startRunningLine.bind(this, line_num))
 		    .each("end", endRunningLine.bind(this, line_num))		
 		transformation_groups.push(cur_group);
-		
-
 	}
 	
 	var shape = cur_group.append("g")
-	
 	shape.append("path").attr("d", function(d) { return lineFunction(dataset) + "Z"; })
 					  .attr("vector-effect", "non-scaling-stroke")
 				      .attr("stroke", "blue")
 				      .attr("stroke-width", -1)
 				      .attr("fill", "none");
-	
 	var remove_time = transformation_commands.length*transition_period;
 	shape.transition()
 		  .delay(remove_time  )
@@ -249,38 +244,26 @@ function showCommandSequence(transformation_commands){
 		  .remove()
 }
 
-
- 
 function run(){
 	var text = codeEditor.getValue();
 	var lines = text.split("\n");
-	var fl = "\\s*[+-]?((\\d+(\\.\\d*)?)|(\\.\\d+))\\s*"
-	//var re = new RegExp("(^translate\(-?\d+,-?\d+\)\s*$)|^rotate\(-?\d+\)\s*$|(^scale\(-?\d+,-?\d+\)\s*$)");
-	//var re = /(^translate\(-?\d+,-?\d+\)\s*$)|(^rotate\(-?\d+\)\s*$)|(^scale\(-?\d+,-?\d+\)\s*$)/m;
-	
-	//var re = new RegExp("(^translate\\(-?\\d+,-?\\d+\\)\\s*$)|(^rotate\\(-?\\d+\\)\\s*$)|(^scale\\(-?\\d+,-?\\d+\\)\\s*$)", "m");
+	var fl = "\\s*[+-]?((\\d+(\\.\\d*)?)|(\\.\\d+))\\s*" // regex for parsing floating point strings
 	var command_re = new RegExp("(^translate\\("+fl+","+fl+"\\)\\s*$)|(^rotate\\("+fl+"\\)\\s*$)|(^scale\\("+fl+","+fl+"\\)\\s*$)", "m");
-	
 	var comment_re = new RegExp("(^\\s*//.*$)|(^\\s*$)", "m");
-	
-	
 	var commands = []
 	var error_lines = []
 	for (var i =0; i < lines.length; ++i){
 		var line = lines[i];
 		var is_comment = comment_re.test(line);
 		var is_command = command_re.test(line);
-	   
 		if (is_command){
 			commands.push( { 'command' : line, 'linenum' : i});
 		}
 		else if (is_comment){
-
 		}
 		else {
 			error_lines.push(i+1);
 		}
-		
 	}
 	if (error_lines.length){
 		alert('errors on lines: ' + error_lines)
@@ -288,12 +271,10 @@ function run(){
 	else{
 		showCommandSequence(commands);
 	}
-	
  }
  
  $('#run_button').click(run)
- 
 };
 
- 
+// wait until document is loaded before running scripts 
 $(function() { init();})
