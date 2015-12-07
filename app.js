@@ -127,10 +127,19 @@ svg.append('line')
 		"marker-end":"url(#arrow)",
 		"x1": xScale(0),
 		"y1": yScale(0),
-		"x2": xScale(10),
+		"x2": xScale(0),
 		"y2": yScale(10)
 	});
 
+svg.append('line')
+	.attr({
+		"class":"arrow",
+		"marker-end":"url(#arrow)",
+		"x1": xScale(0),
+		"y1": yScale(0),
+		"x2": xScale(10),
+		"y2": yScale(0)
+	});
 
 //create the circles
 svg.append("g").selectAll("circle")
