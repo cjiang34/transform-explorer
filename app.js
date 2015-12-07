@@ -36,7 +36,7 @@ var waypoints = [ { 'color' : 'red',
 				];
     
 var dataset = [
-               [0,1],
+               [0,2],
                [0,0],
                [1,0]
            ];
