@@ -93,7 +93,7 @@ svg.append("g")
     .call(yAxis);
 
 //Draw a grid
-var numberOfTicks = 6;
+var numberOfTicks = 12;
 
 var yAxisGrid = yAxis.ticks(numberOfTicks)
     .tickSize(w, 0)
